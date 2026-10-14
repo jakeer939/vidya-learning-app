@@ -17,6 +17,7 @@ import Colors from '../constants/colors';
 import { HeaderBar, BottomNav } from '../components/navigation';
 import { PageIntro, HoverCard } from '../components/common';
 import { useLearningProgress } from '../hooks/useLearningProgress';
+import { useAuth } from '../hooks/useAuth';
 import { getClasses } from '../services/curriculumService';
 import { MainTabParamList, RootStackParamList } from '../types/navigation';
 
@@ -26,6 +27,7 @@ type Props = CompositeScreenProps<
 >;
 
 export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
+  const { user, logout } = useAuth();
   const { profile, bookmarks, progressMap, selectActiveGrade } = useLearningProgress();
   const [dailyReminders, setDailyReminders] = useState(true);
   const [offlineSync, setOfflineSync] = useState(true);
@@ -69,10 +71,10 @@ export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
           />
           <View className="flex-1 gap-1">
             <Text className="font-manrope-extrabold text-lg text-textPrimary">
-              {profile?.displayName || 'Aarav Sharma'}
+              {user?.name || profile?.displayName || 'Aarav Sharma'}
             </Text>
             <Text className="font-manrope-medium text-xs text-textSecondary">
-              Enrolled in {activeClass.title} · AP State Board (2026–27)
+              {user?.email ? `${user.email} · ` : ''}Enrolled in {activeClass.title} · AP State Board
             </Text>
           </View>
         </HoverCard>
@@ -236,6 +238,27 @@ export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
               />
             </View>
           </View>
+        </View>
+
+        {/* Account Actions / Sign Out */}
+        <View className="gap-2">
+          <TouchableOpacity
+            className="flex-row items-center justify-center p-3.5 rounded-2xl bg-red-50 border border-red-200 gap-2 shadow-xs"
+            onPress={() => {
+              Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+                { text: 'Cancel', style: 'cancel' },
+                {
+                  text: 'Sign Out',
+                  style: 'destructive',
+                  onPress: () => logout(),
+                },
+              ]);
+            }}
+            activeOpacity={0.8}
+          >
+            <MaterialIcons name="logout" size={18} color="#DC2626" />
+            <Text className="font-manrope-bold text-sm text-red-600">Sign Out</Text>
+          </TouchableOpacity>
         </View>
 
         {/* App Info & Board Compliance */}

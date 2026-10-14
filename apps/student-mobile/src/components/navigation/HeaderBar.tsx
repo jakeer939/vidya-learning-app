@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import Colors from '../../constants/colors';
 import { getUnreadCount } from '../../services/notificationService';
 import { SidebarDrawer } from './SidebarDrawer';
+import { useAuth } from '../../hooks/useAuth';
 
 interface HeaderBarProps {
   title?: string;
@@ -41,6 +42,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
+  const { user } = useAuth();
   const topInset = Math.max(
     insets.top,
     Platform.OS === 'android' ? (StatusBar.currentHeight || 28) : 0
@@ -187,7 +189,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         navigation={navigation}
-        studentName={studentName}
+        studentName={user?.name || studentName}
         studentClass={studentClass}
         activeRoute={activeRoute}
       />

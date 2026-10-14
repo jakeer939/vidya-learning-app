@@ -15,6 +15,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigationState } from '@react-navigation/native';
 import Colors from '../../constants/colors';
 import { getUnreadCount } from '../../services/notificationService';
+import { useAuth } from '../../hooks/useAuth';
 
 interface SidebarDrawerProps {
   isOpen: boolean;
@@ -37,6 +38,8 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
   activeRoute,
 }) => {
   const insets = useSafeAreaInsets();
+  const { user, logout } = useAuth();
+  const effectiveStudentName = user?.name || studentName;
   const [unreadCount, setUnreadCount] = useState(0);
 
   // Detect current route from React Navigation state
@@ -156,7 +159,7 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
               />
               <View className="flex-1">
                 <Text className="font-manrope-extrabold text-sm text-textPrimary" numberOfLines={1}>
-                  {studentName}
+                  {effectiveStudentName}
                 </Text>
                 <Text className="font-manrope-medium text-xs text-textSecondary mt-0.5">
                   {studentClass} · AP State Board
@@ -240,6 +243,25 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
                   </TouchableOpacity>
                 );
               })}
+
+              {/* Sign Out Option */}
+              <TouchableOpacity
+                className="flex-row items-center justify-between px-2.5 py-2.5 rounded-2xl mt-2 bg-red-50/70 border border-red-200"
+                onPress={() => {
+                  onClose();
+                  logout();
+                }}
+                activeOpacity={0.7}
+              >
+                <View className="flex-row items-center gap-3 flex-1">
+                  <View className="w-9 h-9 rounded-xl items-center justify-center bg-white border border-red-200">
+                    <MaterialIcons name="logout" size={19} color="#DC2626" />
+                  </View>
+                  <Text className="text-[13px] font-manrope-bold text-red-600">
+                    Sign Out
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </ScrollView>
 

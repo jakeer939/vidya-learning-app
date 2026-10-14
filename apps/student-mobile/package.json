@@ -11,6 +11,8 @@
     "@react-navigation/bottom-tabs": "^7.20.0",
     "@react-navigation/native": "^7.5.0",
     "@react-navigation/native-stack": "^7.20.0",
+    "@vidya/api-client": "workspace:*",
+    "@vidya/auth": "workspace:*",
     "expo": "~57.0.27",
     "expo-font": "~57.0.4",
     "expo-status-bar": "~57.0.1",
@@ -28,13 +30,15 @@
   "devDependencies": {
     "@types/react": "~19.2.2",
     "babel-preset-expo": "~57.0.0",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "tsx --test test/*.test.ts"
   },
   "private": true
 }

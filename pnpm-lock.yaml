@@ -97,7 +97,7 @@ importers:
         version: 0.21.4(react-dom@19.2.3)(react@19.2.3)
       tailwindcss:
         specifier: ^3.3.2
-        version: 3.4.19
+        version: 3.4.19(tsx@4.23.15)
     devDependencies:
       '@types/react':
         specifier: ~19.2.2
@@ -199,6 +199,12 @@ importers:
       '@react-navigation/native-stack':
         specifier: ^7.20.0
         version: 7.20.0(@react-navigation/native@7.5.0)(react-native-safe-area-context@5.7.0)(react-native-screens@4.26.2)(react-native@0.86.3)(react@19.2.3)
+      '@vidya/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
+      '@vidya/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
       expo:
         specifier: ~57.0.27
         version: 57.0.28(@babel/core@7.29.7)(@expo/dom-webview@57.0.1)(@expo/metro-runtime@57.0.16)(react-dom@19.2.3)(react-native-web@0.21.4)(react-native-worklets@0.10.4)(react-native@0.86.3)(react@19.2.3)(typescript@6.0.3)
@@ -237,7 +243,7 @@ importers:
         version: 0.21.4(react-dom@19.2.3)(react@19.2.3)
       tailwindcss:
         specifier: ^3.3.2
-        version: 3.4.19
+        version: 3.4.19(tsx@4.23.15)
     devDependencies:
       '@types/react':
         specifier: ~19.2.2
@@ -245,6 +251,9 @@ importers:
       babel-preset-expo:
         specifier: ~57.0.0
         version: 57.0.15(@babel/core@7.29.7)(@babel/runtime@7.29.10)(expo@57.0.28)(react-refresh@0.14.2)
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -1032,7 +1041,6 @@ packages:
     cpu: [ppc64]
     os: [aix]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm64@0.28.2:
@@ -1041,7 +1049,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm@0.28.2:
@@ -1050,7 +1057,6 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-x64@0.28.2:
@@ -1059,7 +1065,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-arm64@0.28.2:
@@ -1068,7 +1073,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-x64@0.28.2:
@@ -1077,7 +1081,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-arm64@0.28.2:
@@ -1086,7 +1089,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-x64@0.28.2:
@@ -1095,7 +1097,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm64@0.28.2:
@@ -1104,7 +1105,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm@0.28.2:
@@ -1113,7 +1113,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ia32@0.28.2:
@@ -1122,7 +1121,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-loong64@0.28.2:
@@ -1131,7 +1129,6 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-mips64el@0.28.2:
@@ -1140,7 +1137,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ppc64@0.28.2:
@@ -1149,7 +1145,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-riscv64@0.28.2:
@@ -1158,7 +1153,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-s390x@0.28.2:
@@ -1167,7 +1161,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-x64@0.28.2:
@@ -1176,7 +1169,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/netbsd-arm64@0.28.2:
@@ -1185,7 +1177,6 @@ packages:
     cpu: [arm64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/netbsd-x64@0.28.2:
@@ -1194,7 +1185,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openbsd-arm64@0.28.2:
@@ -1203,7 +1193,6 @@ packages:
     cpu: [arm64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openbsd-x64@0.28.2:
@@ -1212,7 +1201,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openharmony-arm64@0.28.2:
@@ -1221,7 +1209,6 @@ packages:
     cpu: [arm64]
     os: [openharmony]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/sunos-x64@0.28.2:
@@ -1230,7 +1217,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-arm64@0.28.2:
@@ -1239,7 +1225,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-ia32@0.28.2:
@@ -1248,7 +1233,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-x64@0.28.2:
@@ -1257,7 +1241,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@expo-google-fonts/inter@0.4.2:
@@ -3437,7 +3420,6 @@ packages:
       '@esbuild/win32-arm64': 0.28.2
       '@esbuild/win32-ia32': 0.28.2
       '@esbuild/win32-x64': 0.28.2
-    dev: true
 
   /escalade@3.2.0:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
@@ -5269,7 +5251,7 @@ packages:
       comment-json: 4.6.2
       debug: 4.4.3
       react-native-css-interop: 0.2.7(react-native-reanimated@4.5.1)(react-native-safe-area-context@5.7.0)(react-native-svg@15.15.5)(react-native@0.86.3)(react@19.2.3)(tailwindcss@3.4.19)
-      tailwindcss: 3.4.19
+      tailwindcss: 3.4.19(tsx@4.23.15)
     transitivePeerDependencies:
       - react
       - react-native
@@ -5558,7 +5540,7 @@ packages:
       postcss: 8.5.30
     dev: false
 
-  /postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.30):
+  /postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.30)(tsx@4.23.15):
     resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
     engines: {node: '>= 18'}
     peerDependencies:
@@ -5579,6 +5561,7 @@ packages:
       jiti: 1.21.7
       lilconfig: 3.1.3
       postcss: 8.5.30
+      tsx: 4.23.15
     dev: false
 
   /postcss-nested@6.2.0(postcss@8.5.30):
@@ -5749,7 +5732,7 @@ packages:
       react-native-safe-area-context: 5.7.0(react-native@0.86.3)(react@19.2.3)
       react-native-svg: 15.15.5(react-native@0.86.3)(react@19.2.3)
       semver: 7.8.5
-      tailwindcss: 3.4.19
+      tailwindcss: 3.4.19(tsx@4.23.15)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6308,7 +6291,7 @@ packages:
       '@scarf/scarf': 1.4.0
     dev: false
 
-  /tailwindcss@3.4.19:
+  /tailwindcss@3.4.19(tsx@4.23.15):
     resolution: {integrity: sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -6330,7 +6313,7 @@ packages:
       postcss: 8.5.30
       postcss-import: 15.1.0(postcss@8.5.30)
       postcss-js: 4.1.0(postcss@8.5.30)
-      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.30)
+      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.30)(tsx@4.23.15)
       postcss-nested: 6.2.0(postcss@8.5.30)
       postcss-selector-parser: 6.1.4
       resolve: 1.22.13
@@ -6440,7 +6423,6 @@ packages:
       esbuild: 0.28.2
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
 
   /turbo@2.11.7:
     resolution: {integrity: sha512-RhXHbqfvY6o3xt/zSHCwSNwLrZlXiqHzewi4eAj9PtZ1T1CqgMJ2yIDb7SKPTG9IikTm925mfzL6hldQVdyNWw==}
