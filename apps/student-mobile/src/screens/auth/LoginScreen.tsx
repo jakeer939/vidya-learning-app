@@ -216,7 +216,7 @@ export const LoginScreen: React.FC = () => {
         {/* Quick Demo Credentials */}
         <View className="mt-7 p-3.5 rounded-xl bg-palePeach/70 border border-[#f2ded3]">
           <Text className="font-manrope-bold text-[11px] text-primary uppercase tracking-wider mb-2">
-            Quick Test Credentials (Fastify API)
+            Quick Test Credentials
           </Text>
           <TouchableOpacity
             className="py-2 px-3 rounded-lg bg-white border border-primaryLight flex-row items-center justify-between"
@@ -240,11 +240,14 @@ export const LoginScreen: React.FC = () => {
           <View className="flex-1 h-[1px] bg-border" />
         </View>
 
-        {/* Social Login Buttons (Visually Unchanged & Unwired per scope) */}
+        {/* Social login kept as stale UI — not wired (out of scope). */}
         <View className="gap-2.5">
           <TouchableOpacity
-            className="h-11 rounded-xl border border-border bg-white flex-row items-center justify-center px-4 gap-3 shadow-xs"
+            className="h-11 rounded-xl border border-border bg-white flex-row items-center justify-center px-4 gap-3 shadow-xs opacity-60"
             activeOpacity={0.7}
+            onPress={() =>
+              Alert.alert('Unavailable', 'Google sign-in is not available for student accounts.')
+            }
           >
             <MaterialIcons name="g-mobiledata" size={24} color="#EA4335" />
             <Text className="font-manrope-semibold text-xs text-textPrimary">
@@ -253,8 +256,14 @@ export const LoginScreen: React.FC = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="h-11 rounded-xl border border-border bg-white flex-row items-center justify-center px-4 gap-3 shadow-xs"
+            className="h-11 rounded-xl border border-border bg-white flex-row items-center justify-center px-4 gap-3 shadow-xs opacity-60"
             activeOpacity={0.7}
+            onPress={() =>
+              Alert.alert(
+                'Unavailable',
+                'School Student ID sign-in is not available yet. Use your provisioned email and password.'
+              )
+            }
           >
             <MaterialIcons name="badge" size={18} color={Colors.primary} />
             <Text className="font-manrope-semibold text-xs text-textPrimary">

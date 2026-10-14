@@ -23,43 +23,66 @@ describe('authService Integration Tests', () => {
   });
 
   it('loginStudent: saves token, updates ApiClient accessToken, and stores user', async () => {
-    let calledUrl = '';
+    const calledUrls: string[] = [];
     let calledBody: any = null;
 
     globalThis.fetch = async (url: RequestInfo | URL, init?: RequestInit) => {
-      calledUrl = url.toString();
-      calledBody = init?.body ? JSON.parse(init.body as string) : null;
+      const path = url.toString();
+      calledUrls.push(path);
 
-      const mockRes: LoginResponse = {
-        accessToken: 'jwt-student-token-abc',
-        user: {
+      if (path.endsWith('/api/auth/login')) {
+        calledBody = init?.body ? JSON.parse(init.body as string) : null;
+        const mockRes: LoginResponse = {
+          accessToken: 'jwt-student-token-abc',
+          user: {
+            id: 'student-99',
+            name: 'Priya Patel',
+            email: 'priya@vidya.test',
+            role: 'STUDENT',
+          },
+        };
+        return new Response(JSON.stringify(mockRes), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      if (path.endsWith('/api/auth/me')) {
+        const mockUser: AuthUser = {
           id: 'student-99',
           name: 'Priya Patel',
           email: 'priya@vidya.test',
           role: 'STUDENT',
-        },
-      };
+          emailVerifiedAt: '2026-10-14T10:00:00.000Z',
+        };
+        return new Response(JSON.stringify(mockUser), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
 
-      return new Response(JSON.stringify(mockRes), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return new Response(JSON.stringify({ error: 'Not found' }), { status: 404 });
     };
 
     const result = await loginStudent('priya@vidya.test', 'SecretPass123!');
 
-    assert.strictEqual(calledUrl, 'http://localhost:4000/api/auth/login');
+    assert.deepStrictEqual(calledUrls, [
+      'http://localhost:4000/api/auth/login',
+      'http://localhost:4000/api/auth/me',
+    ]);
     assert.deepStrictEqual(calledBody, {
       email: 'priya@vidya.test',
       password: 'SecretPass123!',
     });
     assert.strictEqual(result.token, 'jwt-student-token-abc');
     assert.strictEqual(result.user.name, 'Priya Patel');
+    assert.strictEqual(result.user.emailVerifiedAt, '2026-10-14T10:00:00.000Z');
 
     // Storage and client assertions
     assert.strictEqual(await getStoredToken(), 'jwt-student-token-abc');
     const storedUser = await getStoredUser();
     assert.strictEqual(storedUser?.id, 'student-99');
+    assert.strictEqual(storedUser?.emailVerifiedAt, '2026-10-14T10:00:00.000Z');
     assert.strictEqual(getApiClient().getAuthToken(), 'jwt-student-token-abc');
   });
 

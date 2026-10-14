@@ -1,5 +1,5 @@
 import { ApiClient, AuthApi, ApiError } from '@vidya/api-client';
-import { AuthUser, LoginRequest, LoginResponse } from '@vidya/auth';
+import { AuthUser, LoginResponse } from '@vidya/auth';
 
 export const AUTH_TOKEN_KEY = '@vidya_student_auth_token';
 export const AUTH_USER_KEY = '@vidya_student_user';
@@ -153,13 +153,9 @@ export const loginStudent = async (
     password: pass,
   });
 
-  const studentUser: AuthUser = {
-    id: res.user.id,
-    name: res.user.name,
-    email: res.user.email,
-    role: res.user.role,
-    emailVerifiedAt: new Date().toISOString(),
-  };
+  // Login payload omits emailVerifiedAt — hydrate the full AuthUser from /me.
+  getApiClient().setAccessToken(res.accessToken);
+  const studentUser = await authApi.me();
 
   await saveStoredAuth(res.accessToken, studentUser);
   return { token: res.accessToken, user: studentUser };
